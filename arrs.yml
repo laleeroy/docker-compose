@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  anime-sonarr:
+    image: linuxserver/sonarr
+    container_name: anime-sonarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/anime-sonarr/config:/config
+      - /path/to/anime:/anime
+      - /path/to/downloads:/downloads
+    ports:
+      - 9898:8989
+    restart: unless-stopped
+
   lidarr:
     image: linuxserver/lidarr
     container_name: lidarr
