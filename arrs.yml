@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  lidarr:
+    image: linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/lidarr/config:/config
+      - /path/to/music:/music
+      - /path/to/downloads:/downloads
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/radarr/config:/config
+      - /path/to/movies:/movies
+      - /path/to/downloads:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/sonarr/config:/config
+      - /path/to/tv/shows:/tv
+      - /path/to/downloads:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  prowlarr:
+    image: linuxserver/prowlarr
+    container_name: prowlarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/prowlarr/config:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  homarr:
+    image: ghcr.io/ajnart/homarr:latest
+    container_name: homarr
+    environment:
+      - PUID=1000 # Adjust as needed
+      - PGID=1000 # Adjust as needed
+      - TZ=Asia/Manila
+    volumes:
+      - /path/to/homarr/config:/app/data/configs
+    ports:
+      - 7575:7575
+    restart: unless-stopped
