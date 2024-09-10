@@ -9,9 +9,9 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/anime-sonarr/config:/config
-      - /path/to/anime:/anime
-      - /path/to/downloads:/downloads
+      - ./anime-sonarr/config:/config
+      - /path/to/media:/media/Anime
+      - ./downloads:/downloads
     ports:
       - 9898:8989
     restart: unless-stopped
@@ -90,9 +90,9 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/lidarr/config:/config
-      - /path/to/music:/music
-      - /path/to/downloads:/downloads
+      - ./lidarr/config:/config
+      - /path/to/media:/media/Music
+      - ./downloads:/downloads
     ports:
       - 8686:8686
     restart: unless-stopped
@@ -105,9 +105,9 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/radarr/config:/config
-      - /path/to/movies:/movies
-      - /path/to/downloads:/downloads
+      - ./radarr/config:/config
+      - /path/to/media:/media/Movies
+      - ./downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -120,9 +120,9 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/sonarr/config:/config
-      - /path/to/tv/shows:/tv
-      - /path/to/downloads:/downloads
+      - ./sonarr/config:/config
+      - /path/to/media:/media/Series
+      - ./downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -135,7 +135,7 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/prowlarr/config:/config
+      - ./prowlarr/config:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -148,7 +148,7 @@ services:
       - PGID=1000 # Adjust as needed
       - TZ=Asia/Manila
     volumes:
-      - /path/to/homarr/config:/app/data/configs
+      - ./homarr/config:/app/data/configs
     ports:
       - 7575:7575
     restart: unless-stopped
