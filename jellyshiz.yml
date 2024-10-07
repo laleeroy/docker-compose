@@ -9,21 +9,24 @@ services:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
       - ./jellyfin/media:/media
-    user: 1000:1000 # Adjust as needed
+    environment:
+      - TZ=Asia/Manila
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
-    
   jellyseer:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseer
     ports:
       - 8196:5055 # Jellyseer web interface
     volumes:
-      - /jellyseer/config:/app/config
+      - ./jellyseer/config:/app/config
     environment:
       - JELLYFIN_URL=http://jellyfin:8096
       - JELLYFIN_API_KEY=your_jellyfin_api_key_here
       - TZ=Asia/Manila
+      - PUID=1000
+      - PGID=1000
     depends_on:
       - jellyfin
-    user: 1000:1000 # Adjust as needed
     restart: unless-stopped
