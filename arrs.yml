@@ -38,10 +38,10 @@ services:
       - NO_STALLED_REMOVAL_QBIT_TAG=Don't Kill
       - IGNORE_PRIVATE_TRACKERS=True
       - FAILED_IMPORT_MESSAGE_PATTERNS=["Not an upgrade for existing", "Not a Custom Format upgrade for existing"]
-      - RADARR_URL=http://$LOCAL_IP:7878
-      - RADARR_KEY=$RADARR_API_KEY
+        #- RADARR_URL=http://$LOCAL_IP:7878
+        #- RADARR_KEY=$ANIME_RADARR_API_KEY
       - SONARR_URL=http://$LOCAL_IP:8989
-      - SONARR_KEY=$SONARR_API_KEY
+      - SONARR_KEY=$ANIME_SONARR_API_KEY
       - QBITTORRENT_URL=http://$LOCAL_IP:8181
     restart: always
 
