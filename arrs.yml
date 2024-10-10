@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   anime-sonarr:
     image: linuxserver/sonarr
@@ -10,7 +9,7 @@ services:
       - TZ=Asia/Manila
     volumes:
       - ./anime-sonarr/config:/config
-      - /path/to/media:/media/Anime
+      - $MEDIA_PATH:/media/Anime
       - ./downloads:/downloads
     ports:
       - 9898:8989
@@ -39,11 +38,11 @@ services:
       - NO_STALLED_REMOVAL_QBIT_TAG=Don't Kill
       - IGNORE_PRIVATE_TRACKERS=True
       - FAILED_IMPORT_MESSAGE_PATTERNS=["Not an upgrade for existing", "Not a Custom Format upgrade for existing"]
-      - RADARR_URL=http://radarr:7878
+      - RADARR_URL=http://$LOCAL_IP:7878
       - RADARR_KEY=$RADARR_API_KEY
-      - SONARR_URL=http://sonarr:8989
+      - SONARR_URL=http://$LOCAL_IP:8989
       - SONARR_KEY=$SONARR_API_KEY
-      - QBITTORRENT_URL=http://qbittorrent:8080
+      - QBITTORRENT_URL=http://$LOCAL_IP:8080
     restart: always
 
   decluttarr:
@@ -69,17 +68,17 @@ services:
       - NO_STALLED_REMOVAL_QBIT_TAG=Don't Kill
       - IGNORE_PRIVATE_TRACKERS=True
       - FAILED_IMPORT_MESSAGE_PATTERNS=["Not an upgrade for existing", "Not a Custom Format upgrade for existing"]
-      - RADARR_URL=http://radarr:7878
+      - RADARR_URL=http://$LOCAL_IP:7878
       - RADARR_KEY=$RADARR_API_KEY
-      - SONARR_URL=http://sonarr:8989
+      - SONARR_URL=http://$LOCAL_IP:8989
       - SONARR_KEY=$SONARR_API_KEY
-      - LIDARR_URL=http://lidarr:8686
+      - LIDARR_URL=http://$LOCAL_IP:8686
       - LIDARR_KEY=$LIDARR_API_KEY
-      - READARR_URL=http://readarr:8787
+      - READARR_URL=http://$LOCAL_IP:8787
       - READARR_KEY=$READARR_API_KEY
-      - WHISPARR_URL=http://whisparr:6969
+      - WHISPARR_URL=http://$LOCAL_IP:6969
       - WHISPARR_KEY=$WHISPARR_API_KEY
-      - QBITTORRENT_URL=http://qbittorrent:8080
+      - QBITTORRENT_URL=http://$LOCAL_IP:8080
     restart: always
 
   lidarr:
@@ -91,7 +90,7 @@ services:
       - TZ=Asia/Manila
     volumes:
       - ./lidarr/config:/config
-      - /path/to/media:/media/Music
+      - $MEDIA_PATH:/media/Music
       - ./downloads:/downloads
     ports:
       - 8686:8686
@@ -106,7 +105,7 @@ services:
       - TZ=Asia/Manila
     volumes:
       - ./radarr/config:/config
-      - /path/to/media:/media/Movies
+      - $MEDIA_PATH:/media/Movies
       - ./downloads:/downloads
     ports:
       - 7878:7878
@@ -121,7 +120,7 @@ services:
       - TZ=Asia/Manila
     volumes:
       - ./sonarr/config:/config
-      - /path/to/media:/media/Series
+      - $MEDIA_PATH:/media/Series
       - ./downloads:/downloads
     ports:
       - 8989:8989
